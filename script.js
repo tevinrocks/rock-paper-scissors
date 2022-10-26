@@ -94,10 +94,9 @@ const getComputerChoice = () => {
     //keep score
     let playerScore = 0;
     let computerScore = 0;
-    //iterate 5 times
-    for (let i = 0; i < 5; i++) {
+
       // prompt playerChoice
-      let playerChoice = prompt('rock, paper, or scissors?');
+      // let playerChoice = prompt('rock, paper, or scissors?');
       //run game save to result var
       let result = playRound(playerChoice, getComputerChoice());
       //if result equals 'player' incriment player score
@@ -116,8 +115,6 @@ const getComputerChoice = () => {
         //log neither player gets a point
         console.log('Neither player gets a point!')
       }
-
-    }
     //console.log(score)
     console.log(`The Final Score Is: Player ${playerScore} Computer ${computerScore}`);
     if (playerScore > computerScore){
