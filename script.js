@@ -55,20 +55,17 @@ const getComputerChoice = () => {
     //if computer chooses scissors
     if (computerChoice === 'scissors') {
       //return 'player wins'
-      console.log('You Win! Rock shatters Scissors!');
       res.textContent = 'You Win! Rock shatters Scissors!'
       return 'player';
     }
     // if computer chooses paper
     else if(computerChoice === 'paper') {
       //return 'computer wins'
-      console.log('You Lose! Paper Wraps Rock!');
       res.textContent = 'You Lose! Paper Wraps Rock!'
       return 'computer';
           }
     // else return draw
     else {
-      console.log(`Draw! You Both Selected ${playerChoice}!`);
       res.textContent = `Draw! You Both Selected ${playerChoice}!`
       return 'draw';
     }
@@ -78,23 +75,18 @@ const getComputerChoice = () => {
     //if computer chooses paper
     if (computerChoice === 'paper') {
       //return 'player wins'
-      console.log('You Win! Scissors Shreds Paper!');
       res.textContent = `You Win! Scissors Shreds Paper!`
       return 'player';
     }
     // if computer chooses rock
     else if(computerChoice === 'rock') {
       //return 'computer wins'
-      console.log('You Lose! Rock Shatters Scissors!');
       res.textContent = `You Lose! Rock Shatters Scissors!`
-
       return 'computer';
     }
     // else return draw
     else {
-      console.log(`Draw! You Both Selected ${playerChoice}!`);
       res.textContent = `Draw! You Both Selected ${playerChoice}!`
-
       return 'draw';
     }
   }
@@ -103,32 +95,25 @@ const getComputerChoice = () => {
     //if computer chooses rock
     if (computerChoice === 'rock') {
       //return 'player wins'
-      console.log( 'You Win! Paper Wraps Rock!');
       res.textContent = `You Win! Paper Wraps Rock!`;
-
       return 'player';
     }
     // if computer chooses scissors
     else if(computerChoice === 'scissors') {
       //return 'computer wins'
-      console.log('You Lose Scissors Shreds Paper!');
       res.textContent = `You Lose Scissors Shreds Paper!`;
-
       return 'computer';
     }
     // else return draw
     else {
-      console.log(`Draw! You Both Selected ${playerChoice}!`);
       res.textContent = `Draw! You Both Selected ${playerChoice}!`;
       return 'draw';
     }
   }
 }
-    let playerScore = 0;
-    let computerScore = 0;
+    let playerScore = 0;//keep score
+    let computerScore = 0;//keep score
     const game = (playerChoice, computerChoice) => {
-    //keep score
-      // prompt playerChoice
       // let playerChoice = prompt('rock, paper, or scissors?');
       //run game save to result var
       let result = playRound(playerChoice, getComputerChoice());
@@ -136,39 +121,28 @@ const getComputerChoice = () => {
       if(result === 'player'){
          //log player gets a point
         playerScore++;
-        console.log(`Player's Score is ${playerScore}!`);
         let domPlayerScore = document.querySelector('#player-score');
         domPlayerScore.textContent = playerScore;
       }
       //if result equals 'computer'
-      else if (result ==='computer'){
+      if (result ==='computer'){
         //log computer gets a point
         computerScore++;
-        console.log(`Computer's score is ${computerScore}!`);
         let domPlayerScore = document.querySelector('#computer-score');
         domPlayerScore.textContent = computerScore;
       }
-      else {
-        //log neither player gets a point
-        console.log('Neither player gets a point!')
-      }
     if(rounds === 1) {
-    //console.log(score)
-    console.log(`The Final Score Is: Player ${playerScore} Computer ${computerScore}`);
     const finalRound = document.querySelector('.result p');
     finalRound.textContent = `The Final Score Is: Player ${playerScore} Computer ${computerScore}`;
     if (playerScore > computerScore){
-      console.log ('Player Wins!');
       let winner = document.createTextNode('p');
       winner.textContent = 'Player Wins!';
       finalRound.parentNode.appendChild(winner);
     } else if (playerScore < computerScore) {
-      console.log('Computer Wins!');
       let winner = document.createTextNode('p')
       winner.textContent = 'Computer Wins!'
       finalRound.parentNode.appendChild(winner)
     } else {
-      console.log('The Game Is A Draw!');
       let winner = document.createTextNode('p')
       winner.textContent = 'Game ended in a draw!'
       finalRound.parentNode.appendChild(winner)
