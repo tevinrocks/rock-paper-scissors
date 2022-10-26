@@ -1,3 +1,15 @@
+let btn = document.querySelector('button');
+let rounds = 10;
+gilet selection = document.querySelectorAll('.game');
+
+
+
+
+
+
+
+
+
 //get computer choice function
 const getComputerChoice = () => {
   //randomize number 1-3
@@ -18,10 +30,8 @@ const getComputerChoice = () => {
   }
 };
 
-  let btn = document.querySelector('button');
 
-  let rounds = 10;
-  let selection = document.querySelectorAll('.game');
+
 
   btn.addEventListener('click', e => {
     e.target.classList.add('hide');
@@ -43,112 +53,96 @@ const getComputerChoice = () => {
   const playRound = (playerChoice, computerChoice) => {
   //lowercase player choice
   playerChoice = playerChoice.toLowerCase();
-
-  if (playerChoice !== 'rock' && playerChoice !== 'scissors' && playerChoice !== 'paper') {
-    while (playerChoice !== 'rock' && playerChoice !== 'scissors' && playerChoice !== 'paper'){
-      playerChoice = prompt('Enter valid response');
-    }
-  }
   let res = document.querySelector('.result p');
   //if player chooses rock
   if (playerChoice === 'rock') {
     //if computer chooses scissors
     if (computerChoice === 'scissors') {
-      //return 'player wins'
-      res.textContent = 'You Win! Rock shatters Scissors!'
-      return 'player';
+      res.textContent = 'You Win! Rock shatters Scissors!'; //update result in dom
+      return 'player';  //return 'player wins'
     }
     // if computer chooses paper
     else if(computerChoice === 'paper') {
-      //return 'computer wins'
-      res.textContent = 'You Lose! Paper Wraps Rock!'
-      return 'computer';
-          }
-    // else return draw
+      res.textContent = 'You Lose! Paper Wraps Rock!'; //update result in dom
+      return 'computer'; //return 'computer wins'
+    }
     else {
-      res.textContent = `Draw! You Both Selected ${playerChoice}!`
-      return 'draw';
+      res.textContent = `Draw! You Both Selected ${playerChoice}!`; //update result in dom
+      return 'draw';  // else return draw
     }
   }
 
   if (playerChoice === 'scissors') {
     //if computer chooses paper
     if (computerChoice === 'paper') {
-      //return 'player wins'
-      res.textContent = `You Win! Scissors Shreds Paper!`
-      return 'player';
+      res.textContent = `You Win! Scissors Shreds Paper!` //update result in dom
+      return 'player';  //return 'player wins'
     }
     // if computer chooses rock
     else if(computerChoice === 'rock') {
-      //return 'computer wins'
-      res.textContent = `You Lose! Rock Shatters Scissors!`
-      return 'computer';
+      res.textContent = `You Lose! Rock Shatters Scissors!` //update result in dom
+      return 'computer'; //return 'computer wins'
     }
-    // else return draw
     else {
-      res.textContent = `Draw! You Both Selected ${playerChoice}!`
-      return 'draw';
+      res.textContent = `Draw! You Both Selected ${playerChoice}!` //update result in dom
+      return 'draw'; // else return draw
     }
   }
 
   if (playerChoice === 'paper') {
     //if computer chooses rock
     if (computerChoice === 'rock') {
-      //return 'player wins'
-      res.textContent = `You Win! Paper Wraps Rock!`;
-      return 'player';
+      res.textContent = `You Win! Paper Wraps Rock!`;//update result in dom
+      return 'player'; //return 'player wins'
     }
     // if computer chooses scissors
     else if(computerChoice === 'scissors') {
-      //return 'computer wins'
-      res.textContent = `You Lose Scissors Shreds Paper!`;
-      return 'computer';
+      res.textContent = `You Lose Scissors Shreds Paper!`; //update result in dom
+      return 'computer'; //return 'computer wins'
     }
-    // else return draw
     else {
-      res.textContent = `Draw! You Both Selected ${playerChoice}!`;
-      return 'draw';
+      res.textContent = `Draw! You Both Selected ${playerChoice}!`; //update result in dom
+      return 'draw'; // else return draw
     }
   }
 }
-    let playerScore = 0;//keep score
-    let computerScore = 0;//keep score
+    let playerScore = 0; //keep score
+    let computerScore = 0; //keep score
     const game = (playerChoice, computerChoice) => {
-      // let playerChoice = prompt('rock, paper, or scissors?');
       //run game save to result var
       let result = playRound(playerChoice, getComputerChoice());
+      let winner = document.createTextNode('p') //instantiate winner node
       //if result equals 'player' incriment player score
-      if(result === 'player'){
-         //log player gets a point
-        playerScore++;
-        let domPlayerScore = document.querySelector('#player-score');
-        domPlayerScore.textContent = playerScore;
+      if(result === 'player') {
+        playerScore++; //incriment player score
+        let domPlayerScore = document.querySelector('#player-score'); //instantiate player score var
+        domPlayerScore.textContent = playerScore; //update player score on dom
       }
       //if result equals 'computer'
       if (result ==='computer'){
-        //log computer gets a point
-        computerScore++;
-        let domPlayerScore = document.querySelector('#computer-score');
-        domPlayerScore.textContent = computerScore;
+        computerScore++; //incriment computer score
+        let domPlayerScore = document.querySelector('#computer-score'); //instantiate computer score var
+        domPlayerScore.textContent = computerScore; //update computer score on dom
       }
-    if(rounds === 1) {
-    const finalRound = document.querySelector('.result p');
-    finalRound.textContent = `The Final Score Is: Player ${playerScore} Computer ${computerScore}`;
-    if (playerScore > computerScore){
-      let winner = document.createTextNode('p');
-      winner.textContent = 'Player Wins!';
-      finalRound.parentNode.appendChild(winner);
-    } else if (playerScore < computerScore) {
-      let winner = document.createTextNode('p')
-      winner.textContent = 'Computer Wins!'
-      finalRound.parentNode.appendChild(winner)
-    } else {
-      let winner = document.createTextNode('p')
-      winner.textContent = 'Game ended in a draw!'
-      finalRound.parentNode.appendChild(winner)
+      //procedure for end game
+      if(rounds === 1) {
+        const finalRound = document.querySelector('.result p'); //instantiate finalRound variable inside html result;
+        finalRound.textContent = `The Final Score Is: Player ${playerScore} Computer ${computerScore}`; //display final score on dom
+        //if player wins
+      if (playerScore > computerScore) {
+        winner.textContent = 'Player Wins!';  //adjust text inside winner node
+        finalRound.parentNode.appendChild(winner); //appending winner node
+      }
+      //if computer wins
+      else if (playerScore < computerScore) {
+      winner.textContent = 'Computer Wins!'; //adjust text inside winner node
+      finalRound.parentNode.appendChild(winner); //appending winner node
     }
-      btn.classList.remove('hide');
+    //game ends in a draw
+    else {
+      winner.textContent = 'Game ended in a draw!' //adjust text inside winner node
+      finalRound.parentNode.appendChild(winner); //appending winner node
+    }
+      btn.classList.remove('hide'); //display reset button
     }
   }
-
-
