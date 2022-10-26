@@ -1,14 +1,27 @@
+let rounds = 5;
+let playerScore = 0; //keep score
+let computerScore = 0; //keep score
+let winner = document.createTextNode('p') //instantiate winner node
+let selection = document.querySelectorAll('.game');
 let btn = document.querySelector('button');
-let rounds = 10;
-gilet selection = document.querySelectorAll('.game');
+let domComputerScore = document.querySelector('#computer-score'); //instantiate computer score var
+let domPlayerScore = document.querySelector('#player-score'); //instantiate player score var
+let res = document.querySelector('.result p');
 
+let reset = () => {
+  rounds = 5;
+  playerScore = 0;
+  computerScore = 0;
+  domComputerScore.textContent = 0;
+  domPlayerScore.textContent = 0;
+  res.textContent = '';
+  winner.remove();
+}
 
-
-
-
-
-
-
+btn.addEventListener('click', e => {
+  reset();
+    e.target.classList.add('hide');
+  })
 
 //get computer choice function
 const getComputerChoice = () => {
@@ -30,30 +43,22 @@ const getComputerChoice = () => {
   }
 };
 
-
-
-
-  btn.addEventListener('click', e => {
-    e.target.classList.add('hide');
-  })
   selection.forEach(select => {
         select.addEventListener('click', (e) => {
           if(rounds === 0){
             console.log('That was the game!');
           } else {
           let choice = e.target.parentNode.id;
-          game(choice,getComputerChoice())
+          game(choice, getComputerChoice())
           rounds--;
            }
         })
       })
 
-
 //create a round of rock paper scissors(player choice parameter, computer choice paramater)
-  const playRound = (playerChoice, computerChoice) => {
+const playRound = (playerChoice, computerChoice) => {
   //lowercase player choice
   playerChoice = playerChoice.toLowerCase();
-  let res = document.querySelector('.result p');
   //if player chooses rock
   if (playerChoice === 'rock') {
     //if computer chooses scissors
@@ -61,7 +66,7 @@ const getComputerChoice = () => {
       res.textContent = 'You Win! Rock shatters Scissors!'; //update result in dom
       return 'player';  //return 'player wins'
     }
-    // if computer chooses paper
+      // if computer chooses paper
     else if(computerChoice === 'paper') {
       res.textContent = 'You Lose! Paper Wraps Rock!'; //update result in dom
       return 'computer'; //return 'computer wins'
@@ -106,35 +111,32 @@ const getComputerChoice = () => {
     }
   }
 }
-    let playerScore = 0; //keep score
-    let computerScore = 0; //keep score
-    const game = (playerChoice, computerChoice) => {
-      //run game save to result var
-      let result = playRound(playerChoice, getComputerChoice());
-      let winner = document.createTextNode('p') //instantiate winner node
-      //if result equals 'player' incriment player score
-      if(result === 'player') {
-        playerScore++; //incriment player score
-        let domPlayerScore = document.querySelector('#player-score'); //instantiate player score var
-        domPlayerScore.textContent = playerScore; //update player score on dom
-      }
-      //if result equals 'computer'
-      if (result ==='computer'){
-        computerScore++; //incriment computer score
-        let domPlayerScore = document.querySelector('#computer-score'); //instantiate computer score var
-        domPlayerScore.textContent = computerScore; //update computer score on dom
-      }
-      //procedure for end game
-      if(rounds === 1) {
-        const finalRound = document.querySelector('.result p'); //instantiate finalRound variable inside html result;
-        finalRound.textContent = `The Final Score Is: Player ${playerScore} Computer ${computerScore}`; //display final score on dom
-        //if player wins
-      if (playerScore > computerScore) {
-        winner.textContent = 'Player Wins!';  //adjust text inside winner node
-        finalRound.parentNode.appendChild(winner); //appending winner node
-      }
-      //if computer wins
-      else if (playerScore < computerScore) {
+const game = (playerChoice, computerChoice) => {
+  //run game save to result var
+  let result = playRound(playerChoice, getComputerChoice());
+  //if result equals 'player' incriment player score
+  if(result === 'player') {
+    playerScore++; //incriment player score
+
+    domPlayerScore.textContent = playerScore; //update player score on dom
+  }
+  //if result equals 'computer'
+  if (result ==='computer'){
+    computerScore++; //incriment computer score
+
+    domComputerScore.textContent = computerScore; //update computer score on dom
+  }
+  //procedure for end game
+  if(rounds === 1) {
+    const finalRound = document.querySelector('.result p'); //instantiate finalRound variable inside html result;
+    finalRound.textContent = `The Final Score Is: Player ${playerScore} Computer ${computerScore}`; //display final score on dom
+    //if player wins
+    if (playerScore > computerScore) {
+      winner.textContent = 'Player Wins!';  //adjust text inside winner node
+      finalRound.parentNode.appendChild(winner); //appending winner node
+    }
+    //if computer wins
+    else if (playerScore < computerScore) {
       winner.textContent = 'Computer Wins!'; //adjust text inside winner node
       finalRound.parentNode.appendChild(winner); //appending winner node
     }

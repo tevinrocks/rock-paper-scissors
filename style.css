@@ -13,9 +13,28 @@ body {
   text-align: center;
 }
 
+.button-div  {
+display: flex;
+justify-content: center;
+}
+
+button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: yellowgreen;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
 .game-container {
   justify-content: space-evenly;
-  padding: 60px 0;
+  padding: 50px 0;
 }
 
 .score-container {
@@ -26,6 +45,34 @@ body {
   width: 200px;
   height: 200px;
 
+}
+
+#scissors {
+  color: gray
+}
+
+.result  {
+  color:green;
+  font-size: 20px;
+}
+
+#paper {
+  color: white;
+}
+
+h2 {
+  font-size: 36px;
+  color: black;
+}
+h3 {
+  font-size: 24px;
+}
+
+.player {
+  color: blue;
+}
+.computer {
+  color: red;
 }
 
 .hide {
