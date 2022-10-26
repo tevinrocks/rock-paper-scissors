@@ -1,0 +1,33 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: tan;
+}
+
+.head,
+.game-container,
+.score-container,
+.result-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.game-container {
+  justify-content: space-evenly;
+  padding: 60px 0;
+}
+
+.score-container {
+  justify-content: space-evenly;
+}
+
+.game-icon {
+  width: 200px;
+  height: 200px;
+
+}
+
+.hide {
+  display: none;
+}
